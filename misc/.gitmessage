@@ -1,0 +1,11 @@
+__TYPE__(__SCOPE__): __SUBJECT__
+
+__BODY__
+
+__footer__
+
+
+
+# allowed type: feat, fix, docs, style, refactor, test, chore, revert
+# subject no more than 50 chars or 30 汉字
+# a body line no more than 72 chars or 40 汉字

@@ -113,6 +113,7 @@ function constructPluginConfig(pluginPath) {
 		plugin.raw.main = jsEntries[0]
 	}
 
+	// todo: there is no process of empty entry, may add later
 	if (plugin.raw.main) {
 		plugin.entry = path.relative(process.cwd(), path.join(pluginPath, '..', plugin.raw.main))
 	} else {
