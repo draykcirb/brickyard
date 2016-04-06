@@ -4,11 +4,9 @@
 
 const Liftoff = require('liftoff')
 const argv = require('minimist')(process.argv.slice(2))
-const util = require('util')
 const Command = require('commander').Command
 const packageInfo = require('../package.json')
 const butil = require('../lib/util')
-const logger = require('../lib/logger')
 
 const app = new Liftoff({
 	name: packageInfo.name,
@@ -43,7 +41,6 @@ app.launch({
 
 	commander.parse(process.argv)
 
-
 	/**
 	 * a callback runner invoke when a subcommand is at action,
 	 * and then invoke the subcommand's run with runtime object
@@ -53,7 +50,7 @@ app.launch({
 	function commandRunner(options) {
 		const cmdOptions = butil.assignWithValid({}, options, commander.opts())
 		const command = argv._[0]
-		
+
 		cli.commands[command].run(brickyard.hatchRuntime(cmdOptions))
 	}
 })

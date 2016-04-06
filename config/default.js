@@ -11,8 +11,8 @@ module.exports = {
 	// server related
 	port: 8080,
 	proxyPort: 3000,
-	host: 'localhost',
-	proxyHost: 'localhost',
+	hostname: 'localhost',
+	proxyHostname: 'localhost',
 	serverAddress: 'localhost',
 	watch: false,
 	livereload: false,
