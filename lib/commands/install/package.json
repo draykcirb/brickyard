@@ -18,7 +18,8 @@
     "bower": "^1.7.0",
     "lodash": "^4.6.1",
     "npm": "^3.8.1",
-    "semver": "^5.1.0"
+    "semver": "^5.1.0",
+    "log4js": "^0.6.33"
   },
   "devDependencies": {
     "chai": "^3.5.0",
