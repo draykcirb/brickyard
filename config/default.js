@@ -22,5 +22,6 @@ module.exports = {
 	hashbit: 7,
 	lint: false,
 	offline: false,
-	registry: null
+	registry: null,
+	showConfig: false
 }
