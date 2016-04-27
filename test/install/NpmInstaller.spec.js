@@ -31,13 +31,13 @@ describe('#Npm installer test', function () {
 			this.timeout(30000)
 
 			const targetDeps = {
-				npm: '~2.14.0',
-				bower: '~1.7.0'
+				lodash: '~3.10.1',
+				mocha: '^2.4.0'
 			}
 
 			return npmInstaller.diff(targetDeps)
 				.then(function (checkResult) {
-					expect(checkResult).to.be.eql({ npm: '~2.14.0' })
+					expect(checkResult).to.be.eql({ lodash: '~3.10.1' })
 				})
 		})
 	})

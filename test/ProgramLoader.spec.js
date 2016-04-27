@@ -59,7 +59,7 @@ describe('#Program loader test', function () {
 
 			const programs = loader.getTargetPrograms(['heaven'], './recipes')
 
-			expect(programs).to.be.eql(null)
+			expect(programs).to.be.empty
 
 		})
 	})
