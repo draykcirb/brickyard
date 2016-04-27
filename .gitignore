@@ -4,6 +4,7 @@ bower_components
 
 # ignore generated build
 /build-*/
+/release*
 
 # ignore istanbul report
 /coverage
