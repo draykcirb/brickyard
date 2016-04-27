@@ -35,6 +35,12 @@ app.launch({
 
 	const commander = new Command(packageInfo.name)
 
+	if (argv.verbose) {
+		brickyard.setLogLevel('debug')
+	} else {
+		brickyard.setLogLevel(argv.loglevel)
+	}
+
 	brickyard.load(env.configPath)
 
 	cli.load(commander, packageInfo, commandRunner)
