@@ -26,19 +26,44 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "conventional-changelog": "^1.1.0",
     "dev-null": "^0.1.1",
+    "eslint": "^2.8.0",
     "eslint-config-airbnb": "^8.0.0",
+    "eslint-plugin-import": "^1.5.0",
+    "ghooks": "^1.2.1",
     "istanbul": "^0.4.2",
-    "jasmine": "^2.4.1",
-    "karma": "^0.13.21",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-firefox-launcher": "^0.1.7",
-    "karma-mocha": "^0.2.2",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "validate-commit-msg": "^2.6.1"
   },
   "scripts": {
     "test": "mocha test",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -i -f 'staller' --reporter dot --check-leaks test"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "config": {
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 72,
+      "subjectPattern": ".+",
+      "subjectPatternErrorMsg": "subject does not match subject pattern!",
+      "helpMessage": ""
+    },
+    "ghooks": {
+      "commit-msg": "validate-commit-msg",
+      "post-merge": "npm install",
+      "post-rewrite": "npm install"
+    }
+  }
 }
