@@ -22,7 +22,8 @@
     "liftoff": "^2.2.0",
     "lodash": "^4.6.1",
     "log4js": "^0.6.33",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "globby": "^4.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
