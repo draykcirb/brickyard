@@ -10,10 +10,12 @@ module.exports = {
 
 	// server related
 	port: 8080,
-	proxyPort: 3000,
-	hostname: 'localhost',
-	proxyHostname: 'localhost',
-	serverAddress: 'localhost',
+	host: 'localhost',
+	bsProxy: {
+		port: 3000,
+		host: 'localhost'
+	},
+	apiProxy: null,
 	watch: false,
 	livereload: false,
 	https: false,
@@ -23,5 +25,6 @@ module.exports = {
 	lint: false,
 	offline: false,
 	registry: null,
-	showConfig: false
+	showConfig: false,
+	debuggable: false
 }

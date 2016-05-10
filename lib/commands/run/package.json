@@ -1,11 +1,19 @@
 {
   "name": "brickyard-command-run",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "e-cloud",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.0.0",
+    "http-proxy-middleware": "^0.14.0",
+    "lodash": "^4.6.1",
+    "log4js": "^0.6.33",
+    "morgan": "^1.7.0",
+    "opn": "^3.0.0"
+  }
 }
