@@ -63,9 +63,13 @@
       "helpMessage": ""
     },
     "ghooks": {
+      "//": {
+        "pre-commit": "check code style"
+      },
       "commit-msg": "validate-commit-msg",
       "post-merge": "npm install",
-      "post-rewrite": "npm install"
+      "post-rewrite": "npm install",
+      "post-checkout": "npm install"
     }
   }
 }
