@@ -26,5 +26,6 @@ module.exports = {
 	offline: false,
 	registry: null,
 	showConfig: false,
-	debuggable: false
+	debuggable: false,
+	compress: true
 }
