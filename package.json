@@ -19,11 +19,11 @@
     "del": "^2.2.0",
     "eslint": "^2.3.0",
     "glob": "^7.0.3",
+    "globby": "^4.0.0",
     "liftoff": "^2.2.0",
     "lodash": "^4.6.1",
     "log4js": "^0.6.33",
-    "minimist": "^1.2.0",
-    "globby": "^4.0.0"
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
