@@ -65,11 +65,11 @@
     "ghooks": {
       "//": {
         "pre-commit": "check code style",
-        "post-merge": "npm install"
+        "post-checkout": "npm install"
       },
       "commit-msg": "validate-commit-msg",
       "post-rewrite": "npm install",
-      "post-checkout": "npm install"
+      "post-merge": "npm install"
     }
   }
 }
