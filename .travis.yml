@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+	- "5.0.0"
+
+env:
+	- CXX=g++-4.8 MYSQL_USER=travis MYSQL_PASSWORD=
+
+addons:
+	apt:
+		sources:
+		- ubuntu-toolchain-r-test
+		packages:
+		- gcc-4.8
+		- g++-4.8
+
+services:
+	- mongodb
+	- redis
+	- mysql
+
+before_script:
+	- npm install -g gulp
+	- cp misc/config/ci.js config.js
+
+script:
+	- npm test

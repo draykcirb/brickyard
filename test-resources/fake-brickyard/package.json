@@ -1,0 +1,13 @@
+{
+  "name": "fake-brickyard",
+  "version": "3.0.0",
+  "description": "plugin framework for building extendable and flexible web apps or back-end services.",
+  "private": true,
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+  },
+  "license": "ISC"
+}

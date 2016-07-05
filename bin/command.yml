@@ -1,0 +1,128 @@
+---
+# 命令/任务
+commands:
+  -
+    name: dev
+    desc: dev mode
+    usage: dev <program> [option...]
+    #arguments: <program> [option...]
+    #    options:
+    #      - flags: --test
+    #        desc: test option
+    #        coercionFn: parseInt
+    #        default:
+  -
+    name: release
+    desc: release mode
+    usage: release <program> [option...]
+    #arguments: <program> [option...]
+  -
+    name: install
+    desc: install dependencies
+    usage: install [option...]
+  -
+    name: run
+    desc: run the website
+    usage: run [option...]
+    #arguments: <program> [option...]
+
+options:
+  # options for building program
+  -
+    flags: -o, --output <dir>
+    desc: the output dir
+    # function for transforming input to target data
+    coercionFn:
+    default:
+  -
+    flags: --program <program...>
+    desc: the program to be <command>ed
+    coercionFn: list
+    default:
+  -
+    flags: --config <path>
+    desc: path of configuration
+    coercionFn:
+    default: .
+
+  # options about server
+  -
+    flags: --port <port>
+    desc: the static server port
+    coercionFn: parseInt
+    default:
+  -
+    flags: --proxy-port <port>
+    desc: the proxy-port browsersync used to proxy the static server
+    coercionFn: parseInt
+    default:
+  -
+    flags: --host <host>
+    desc: host for local server
+    coercionFn:
+    default:
+  -
+    flags: --proxy-host <host>
+    desc: host for proxy server
+    coercionFn:
+    default:
+  -
+    flags: --server-addr <addr>
+    desc: request-address for the website CROS
+    coercionFn:
+    default:
+  -
+    flags: --watch
+    desc: set up incremental build for developing
+    coercionFn:
+    default:
+  -
+    flags: --livereload
+    desc: enable the livereload functionality
+    coercionFn:
+    default:
+  -
+    flags: --protocol <protocol>
+    desc: sometimes you need to test on https
+    coercionFn:
+    default:
+
+  # other options
+  -
+    flags: --hashbit
+    desc: enable linting the source code
+    coercionFn: parseInt
+    default:
+  -
+    flags: --lint
+    desc: enable linting the source code
+    coercionFn:
+    default:
+  -
+    flags: --offline
+    desc: enable bower use the offline data
+    coercionFn:
+    default:
+  -
+    flags: --npm-registry <registry>
+    desc: the registry for installing npm packages
+    coercionFn:
+    default:
+
+usage:
+  <command/task> [option...]
+
+arguments:
+  <command/task> [option...]
+
+util:
+  parseInt: !!js/function >
+      function () {
+        return parseInt;
+      }
+  list: !!js/function >
+      function (){
+        return function(val){
+          return val.split(',')
+        }
+      }

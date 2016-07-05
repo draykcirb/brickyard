@@ -1,0 +1,12 @@
+{
+  "analytics": false,
+  "registry": {
+    "search": [
+      "http://bower.dbjtech.com",
+      "https://bower.herokuapp.com"
+    ]
+  },
+  "color": true,
+  "timeout": 30000,
+  "interactive": true
+}
