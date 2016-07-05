@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bluebird": "^3.3.4",
+    "bower": "^1.7.0",
     "commander": "^2.9.0",
     "del": "^2.2.0",
     "eslint": "^2.3.0",
@@ -20,9 +21,7 @@
     "liftoff": "^2.2.0",
     "lodash": "^4.6.1",
     "log4js": "^0.6.33",
-    "run-sequence": "^1.1.2",
     "minimist": "latest",
-    "bower": "^1.7.0",
     "npm": "^3.8.1",
     "semver": "^5.1.0"
   },

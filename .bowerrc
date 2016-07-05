@@ -2,7 +2,6 @@
   "analytics": false,
   "registry": {
     "search": [
-      "http://bower.dbjtech.com",
       "https://bower.herokuapp.com"
     ]
   },
