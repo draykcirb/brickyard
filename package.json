@@ -9,12 +9,6 @@
     "by": "./base/brickyard-cli.js"
   },
   "dependencies": {
-    "brickyard-command-dev": "file:./lib/commands/dev",
-    "brickyard-command-init": "file:./lib/commands/init",
-    "brickyard-command-inspect": "file:./lib/commands/inspect",
-    "brickyard-command-install": "file:./lib/commands/install",
-    "brickyard-command-release": "file:./lib/commands/release",
-    "brickyard-command-run": "file:./lib/commands/run",
     "commander": "^2.9.0",
     "del": "^2.2.0",
     "eslint": "^2.3.0",
@@ -26,21 +20,20 @@
     "minimist": "^1.2.0"
   },
   "devDependencies": {
+    "brickyard-command-init": "*",
     "chai": "^3.5.0",
     "conventional-changelog": "^1.1.0",
-    "dev-null": "^0.1.1",
     "eslint": "^2.8.0",
     "eslint-config-airbnb-base": "^3.0.0",
     "eslint-plugin-import": "^1.5.0",
     "ghooks": "^1.2.1",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
-    "express": "^4.0.0",
     "validate-commit-msg": "^2.6.1"
   },
   "scripts": {
     "test": "mocha test",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -i -f 'staller' --reporter dot --check-leaks test"
+    "test-cov": "istanbul cover mocha -- -i -f 'staller' --reporter dot --check-leaks test"
   },
   "license": "ISC",
   "config": {
