@@ -4,7 +4,7 @@
 'use strict'
 
 const expect = require('chai').expect
-const loader = require('../bin/configLoader')
+const loader = require('../lib/configLoader')
 
 describe('#Config file loader test', function () {
 
@@ -19,14 +19,14 @@ describe('#Config file loader test', function () {
 
 		it('should load the config file on `cwd`', function () {
 
-			const config = loader()
-			expect(config).to.be.eql({})
+			const config = loader.run('./config.js')
+			expect(config.port).to.be.equal(3002)
 
 		})
 
 		it('should load the specified config file like `./config/production/config.js`', function () {
 
-			const config = loader('./config/production/config.js')
+			const config = loader.run('./config/production/config.js')
 			expect(config.msg).to.be.equal(123456)
 
 		})
@@ -43,7 +43,7 @@ describe('#Config file loader test', function () {
 
 		it('should load the default config file', function () {
 
-			const config = loader()
+			const config = loader.run()
 			expect(config.msg).to.be.equal(123)
 
 		})
@@ -61,16 +61,7 @@ describe('#Config file loader test', function () {
 
 		it('should throw an error if there is no config file', function () {
 
-			let hasError = false
-
-			try {
-				const config = loader()
-			}
-			catch (e) {
-				hasError = true
-			}
-
-			expect(hasError).to.be.equal(true)
+			expect(loader.run).to.throw(Error)
 
 		})
 	})

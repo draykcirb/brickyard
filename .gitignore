@@ -5,8 +5,11 @@ bower_components
 # ignore generated build
 /build-*/
 
+# ignore istanbul report
+/coverage
+
 # ignore custom config file
-/config.js
+/by-conf.js
 
 # ignore temporary files and log files
 temp/

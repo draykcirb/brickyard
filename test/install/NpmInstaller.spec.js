@@ -10,7 +10,7 @@ const del = require('del')
 const fs = require('fs')
 const path = require('path')
 const devNull = require('dev-null')
-const npmInstaller = require('../bin/npmInstaller')
+const npmInstaller = require('../../lib/commands/install/npmInstaller')
 
 describe('#Npm installer test', function () {
 	before('', function () {

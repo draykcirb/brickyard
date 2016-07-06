@@ -1,5 +1,5 @@
 const defaults = require('./config/default')
 
-module.exports = Object.assign(defaults, {
-
-})
+module.exports = {
+	port: 3002
+}

@@ -3,15 +3,15 @@
  */
 'use strict'
 
-const logger = require('../bin/logger')
+const logger = require('../lib/logger')
 
 before(function () {
 	logger.configure({
 		appenders: [
-			{type:'console'}
+			{ type: 'console' }
 		],
 		levels: {
-			'[all]': 'warn'
+			'[all]': 'off'
 		}
 	})
 })

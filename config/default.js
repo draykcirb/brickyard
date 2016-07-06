@@ -1,6 +1,11 @@
 module.exports = {
+
+	programStore: './recipes',
+	pluginStore: './bricks',
+
+
 	// path related
-	output: null,
+	dest: null,
 	program: null,
 
 	// server related
@@ -11,11 +16,11 @@ module.exports = {
 	serverAddress: 'localhost',
 	watch: false,
 	livereload: false,
-	protocol: 'http',
+	https: false,
 
 	// others
 	hashbit: 7,
 	lint: false,
 	offline: false,
-	npmRegistry: null,
+	registry: null
 }

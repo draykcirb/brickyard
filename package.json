@@ -1,11 +1,15 @@
 {
   "name": "brickyard",
+  "author": "e-cloud",
   "version": "3.0.0",
   "description": "plugin framework for building extendable and flexible web apps or back-end services.",
-  "private": true,
+  "main": "index.js",
+  "bin": {
+    "brickyard": "./base/brickyard-cli.js",
+    "by": "./base/brickyard-cli.js"
+  },
   "dependencies": {
     "bluebird": "^3.3.4",
-    "bower": "^1.7.0",
     "commander": "^2.9.0",
     "del": "^2.2.0",
     "eslint": "^2.3.0",
@@ -13,28 +17,31 @@
     "gulp": "^3.9.0",
     "immutable": "^3.7.6",
     "js-yaml": "^3.5.3",
+    "liftoff": "^2.2.0",
     "lodash": "^4.6.1",
     "log4js": "^0.6.33",
+    "run-sequence": "^1.1.2",
+    "minimist": "latest",
+    "bower": "^1.7.0",
     "npm": "^3.8.1",
-    "run-sequence": "^1.1.2"
+    "semver": "^5.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "dev-null": "^0.1.1",
-    "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.1",
+    "istanbul": "^0.4.2",
     "jasmine": "^2.4.1",
     "karma": "^0.13.21",
     "karma-chrome-launcher": "^0.2.2",
     "karma-firefox-launcher": "^0.1.7",
     "karma-mocha": "^0.2.2",
     "mocha": "^2.4.5",
-    "require-new": "^1.1.0",
-    "semver": "^5.1.0",
     "sinon": "^1.17.3"
   },
   "scripts": {
-    "test": ". misc/script/test.sh"
+    "test": "mocha test",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -i -f 'staller' --reporter dot --check-leaks test"
   },
   "license": "ISC"
 }

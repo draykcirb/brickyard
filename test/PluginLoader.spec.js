@@ -4,9 +4,10 @@
 'use strict'
 
 const expect = require('chai').expect
-const loader = require('../bin/pluginsLoader')
+const loader = require('../lib/pluginLoader')
 
 describe('#Plugins loader test', function () {
+
 	describe('test with non-empty plugin store', function () {
 		beforeEach('fake the cwd', function () {
 			process.chdir('./test-resources/fake-brickyard')
@@ -18,15 +19,14 @@ describe('#Plugins loader test', function () {
 
 		it('should load the specified plugins with direct plugin declaration', function () {
 			const specifiedPlugins = ['common-service/udp-lbs', 'wcg-portal']
-			const plugins = loader.getTargetPlugins(specifiedPlugins)
+			const plugins = loader.getTargetPlugins('./plugins', specifiedPlugins)
 
 			expect(plugins).to.have.all.keys('udp-lbs', 'wcg-portal')
 		})
 
-
 		it('should load the specified plugins without direct plugin declaration', function () {
 			const specifiedPlugins = ['admin']
-			const plugins = loader.getTargetPlugins(specifiedPlugins)
+			const plugins = loader.getTargetPlugins('./plugins', specifiedPlugins)
 
 			expect(plugins).to.have.all.keys(
 				'admin-activation-code',
@@ -38,7 +38,7 @@ describe('#Plugins loader test', function () {
 
 		it('should load the specified plugins including a `bower.json`', function () {
 			const specifiedPlugins = ['wcg-portal']
-			const plugins = loader.getTargetPlugins(specifiedPlugins)
+			const plugins = loader.getTargetPlugins('./plugins', specifiedPlugins)
 
 			expect(plugins['wcg-portal']).to.have.deep.property('bower')
 		})
@@ -47,7 +47,7 @@ describe('#Plugins loader test', function () {
 			const specifiedPlugins = ['heaven']
 
 			const fn = function () {
-				loader.getTargetPlugins(specifiedPlugins)
+				loader.getTargetPlugins('./plugins', specifiedPlugins)
 			}
 
 			expect(fn).to.throw(Error)
@@ -67,7 +67,7 @@ describe('#Plugins loader test', function () {
 			const specifiedPlugins = ['wcg-portal']
 
 			const fn = function () {
-				loader.getTargetPlugins(specifiedPlugins)
+				loader.getTargetPlugins('./plugins', specifiedPlugins)
 			}
 
 			expect(fn).to.throw(Error)

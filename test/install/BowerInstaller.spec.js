@@ -7,7 +7,7 @@ const expect = require('chai').expect
 const del = require('del')
 const fs = require('fs')
 const path = require('path')
-const bowerInstaller = require('../bin/bowerInstaller')
+const bowerInstaller = require('../../lib/commands/install/bowerInstaller')
 
 describe('#Bower installer test', function () {
 	const targetPath = './test-resources/'
