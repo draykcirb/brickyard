@@ -11,7 +11,6 @@
   "dependencies": {
     "commander": "^2.9.0",
     "del": "^2.2.0",
-    "eslint": "^2.3.0",
     "glob": "^7.0.3",
     "globby": "^4.0.0",
     "liftoff": "^2.2.0",
@@ -23,8 +22,8 @@
     "brickyard-command-init": "*",
     "chai": "^3.5.0",
     "conventional-changelog": "^1.1.0",
-    "eslint": "^2.8.0",
-    "eslint-config-airbnb-base": "^3.0.0",
+    "eslint": "^3.0.0",
+    "eslint-config-airbnb-base": "^4.0.0",
     "eslint-plugin-import": "^1.5.0",
     "ghooks": "^1.2.1",
     "istanbul": "^0.4.2",
@@ -32,6 +31,7 @@
     "validate-commit-msg": "^2.6.1"
   },
   "scripts": {
+    "lint": "eslint lib/ base/",
     "test": "mocha test",
     "test-cov": "istanbul cover mocha -- -i -f 'staller' --reporter dot --check-leaks test"
   },

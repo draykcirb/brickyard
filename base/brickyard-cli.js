@@ -21,7 +21,7 @@ const app = new Liftoff({
 })
 
 app.launch({
-	//cwd: argv.r || argv.root,
+	// cwd: argv.r || argv.root,
 	configPath: argv.config
 }, function (env) {
 	let brickyard
