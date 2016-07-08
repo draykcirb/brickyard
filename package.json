@@ -1,7 +1,7 @@
 {
   "name": "brickyard3",
   "author": "e-cloud",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "plugin framework for building extendable and flexible web apps or back-end services.",
   "main": "index.js",
   "bin": {
