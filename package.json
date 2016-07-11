@@ -33,7 +33,8 @@
   "scripts": {
     "lint": "eslint lib/ base/",
     "test": "mocha test",
-    "test-cov": "istanbul cover mocha -- -i -f 'staller' --reporter dot --check-leaks test"
+    "test-cov": "istanbul cover mocha -- -i -f 'staller' --reporter dot --check-leaks test",
+    "postversion": "git push && git push --tags && npm publish . --registry=https://registry.npmjs.org/"
   },
   "license": "ISC",
   "config": {
