@@ -4,6 +4,11 @@
   "version": "1.1.0",
   "description": "plugin framework for building extendable and flexible web apps or back-end services.",
   "main": "index.js",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:draykcirb/brickyard3.git"
+  },
   "bin": {
     "brickyard": "./base/brickyard-cli.js",
     "by": "./base/brickyard-cli.js"
@@ -36,7 +41,6 @@
     "test-cov": "istanbul cover mocha -- -i -f 'staller' --reporter dot --check-leaks test",
     "postversion": "git push && git push --tags && npm publish . --registry=https://registry.npmjs.org/"
   },
-  "license": "ISC",
   "config": {
     "validate-commit-msg": {
       "types": [
