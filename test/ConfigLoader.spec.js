@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies:0 */
 /**
  * Created by scott on 16-3-8.
  */
@@ -44,24 +45,7 @@ describe('#Config file loader test', function () {
 		it('should load the default config file', function () {
 
 			const config = loader.run()
-			expect(config.msg).to.be.equal(123)
-
-		})
-	})
-
-
-	describe('test with no config file', function () {
-		beforeEach('', function () {
-			process.chdir('./test-resources/fake-brickyard3')
-		})
-
-		afterEach('', function () {
-			process.chdir('../../')
-		})
-
-		it('should throw an error if there is no config file', function () {
-
-			expect(loader.run).to.throw(Error)
+			expect(config.hashbit).to.equal(7)
 
 		})
 	})
