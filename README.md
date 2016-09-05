@@ -4,7 +4,7 @@
 [![DevDependency Status](https://david-dm.org/draykcirb/brickyard3/dev-status.svg)](https://david-dm.org/draykcirb/brickyard3?type=dev)
 
 [![npm version](https://img.shields.io/npm/v/brickyard3.svg?maxAge=86400)](https://www.npmjs.com/package/brickyard3)
-![License](https://img.shields.io/badge/License-MIT-blue.svg?maxAge=86400)
+![License](https://img.shields.io/badge/License-ISC-blue.svg?maxAge=86400)
 
 brickyard3 是一个基于插件式架构的前端代码管理与构建框架工具，是面向产品线开发的代码共享与分化的集成解决方案。
 
