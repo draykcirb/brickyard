@@ -23,7 +23,7 @@ brickyard3 是一个基于插件式架构的前端代码管理与构建框架工
 npm install brickyard3 brickyard-command-dev brickyard-command-release brickyard-command-install -S
 ```
 
-2. 用户仓库的代码目录解构需要如下安排(类似)
+2. 用户仓库的代码目录结构需要如下安排(类似)
 
 ```
 ├─ bricks (name configurable)
