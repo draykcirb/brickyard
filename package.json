@@ -10,7 +10,7 @@
     "url": "git@github.com:draykcirb/brickyard3.git"
   },
   "bin": {
-    "brickyard": "./base/brickyard-cli.js",
+    "brickyard3": "./base/brickyard-cli.js",
     "by": "./base/brickyard-cli.js"
   },
   "dependencies": {
