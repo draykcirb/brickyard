@@ -13,6 +13,10 @@ rootCmd.parse(process.argv)
 
 boot(rootCmd.opts())
 
+/**
+ * boot up the whole command app
+ * @param {Object} argv
+ */
 function boot(argv) {
 	const app = new Liftoff({
 		name: packageInfo.name,
@@ -54,6 +58,11 @@ function boot(argv) {
 	})
 }
 
+/**
+ * initiate the root command
+ * @param {Object} pkgInfo
+ * @returns {*|Command}
+ */
 function initRootCmd(pkgInfo) {
 	const cmd = new Command(pkgInfo.name)
 
