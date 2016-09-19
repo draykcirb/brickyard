@@ -42,7 +42,7 @@ function boot(argv) {
 				const cmdOptions = butil.assignWithValid({}, options, rootCmd.opts())
 				const targetCmd = brickyard.cli.commands[cmdName]
 
-				brickyard.load(env.configPath)
+				brickyard.load(env.configPath, targetCmd.config)
 
 				targetCmd.run(brickyard.hatchRuntime(cmdOptions))
 			})
