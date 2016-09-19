@@ -45,7 +45,7 @@ describe('#Config file loader test', function () {
 		it('should load the default config file', function () {
 
 			const config = loader.run()
-			expect(config.hashbit).to.equal(7)
+			expect(config.destPrefix).to.equal('build')
 
 		})
 	})
