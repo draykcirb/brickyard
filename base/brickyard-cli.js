@@ -6,10 +6,10 @@ const Liftoff = require('liftoff')
 const Command = require('commander').Command
 const packageInfo = require('../package.json')
 const butil = require('../lib/util')
+const logger = require('../lib/logger')
+const _ = require('lodash')
 
-const rootCmd = initRootCmd(packageInfo)
-
-boot(rootCmd.opts())
+boot(require('minimist')(process.argv.slice(2)))
 
 /**
  * boot up the whole command app
@@ -28,6 +28,18 @@ function boot(argv) {
 		v8flags: ['--harmony']
 	})
 
+	if (argv.backlog) {
+		let logPath = _.isBoolean(argv.backlog) ? 'logs/build.log' : argv.backlog
+
+		logger.configure({
+			appenders: [
+				{ type: 'console' },
+				{ type: 'file', filename: logPath, maxLogSize: 1000000, backups: 10 }
+			],
+			replaceConsole: true
+		})
+	}
+
 	app.launch({
 		configPath: argv.config
 	}, env => {
@@ -38,6 +50,8 @@ function boot(argv) {
 		} else {
 			brickyard.setLogLevel(argv.loglevel)
 		}
+
+		const rootCmd = initRootCmd(packageInfo)
 
 		brickyard.cli.load(rootCmd, env.configPath ? require(env.configPath).commands : null)
 			.spread((cmdName, options) => {
@@ -72,6 +86,7 @@ function initRootCmd(pkgInfo) {
 		.usage('[cmd] [options]')
 		.option('--config <path>', 'config path')
 		.option('--no-color', 'output without color')
+		.option('--backlog [dir]', 'output without color')
 		.option('--loglevel <level>', 'output log verbosity. Available levels are: trace,debug,info,warn,error,fatal')
 		.option('-V, --verbose', 'output log verbosely. Same as debug level. Prior to loglevel argument', Boolean, false)
 
