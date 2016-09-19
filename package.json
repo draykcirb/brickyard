@@ -1,7 +1,7 @@
 {
   "name": "brickyard3",
   "author": "e-cloud",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "plugin framework for building extendable and flexible web apps or back-end services.",
   "main": "index.js",
   "license": "ISC",
@@ -39,8 +39,9 @@
     "lint": "eslint lib/ base/",
     "test": "mocha test",
     "test-cov": "istanbul cover mocha -- -i -f 'staller' --reporter dot --check-leaks test",
-    "version": "standard-version",
-    "postversion": "git push && git push --tags && npm publish . --registry=https://registry.npmjs.org/"
+    "prerelease": "npm run lint",
+    "release": "standard-version",
+    "push": "git push && git push --tags && npm publish . --registry=https://registry.npmjs.org/"
   },
   "config": {
     "validate-commit-msg": {
