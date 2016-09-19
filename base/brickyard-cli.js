@@ -3,60 +3,70 @@
 'use strict'
 
 const Liftoff = require('liftoff')
-const argv = require('minimist')(process.argv.slice(2))
 const Command = require('commander').Command
 const packageInfo = require('../package.json')
 const butil = require('../lib/util')
 
-const app = new Liftoff({
-	name: packageInfo.name,
-	processTitle: packageInfo.name,
-	moduleName: packageInfo.name,
-	configName: 'by-conf',
-	extensions: {
-		'.js': null,
-		'.json': null
-	},
-	v8flags: ['--harmony']
-})
+const rootCmd = initRootCmd(packageInfo)
 
-app.launch({
-	// cwd: argv.r || argv.root,
-	configPath: argv.config
-}, function (env) {
-	let brickyard
-	if (!env.modulePath) {
-		brickyard = require('../')
-	} else {
-		brickyard = require(env.modulePath)
-	}
+rootCmd.parse(process.argv)
 
-	const cli = brickyard.cli
+boot(rootCmd.opts())
 
-	const commander = new Command(packageInfo.name)
+function boot(argv) {
+	const app = new Liftoff({
+		name: packageInfo.name,
+		processTitle: packageInfo.name,
+		moduleName: packageInfo.name,
+		configName: 'by-conf',
+		extensions: {
+			'.js': null,
+			'.json': null
+		},
+		v8flags: ['--harmony']
+	})
 
-	if (argv.verbose) {
-		brickyard.setLogLevel('debug')
-	} else {
-		brickyard.setLogLevel(argv.loglevel)
-	}
+	app.launch({
+		configPath: argv.config
+	}, env => {
+		let brickyard = !env.modulePath ? require('../') : require(env.modulePath)
 
-	brickyard.load(env.configPath)
+		if (argv.verbose) {
+			brickyard.setLogLevel('debug')
+		} else {
+			brickyard.setLogLevel(argv.loglevel)
+		}
 
-	cli.load(commander, packageInfo, commandRunner)
+		brickyard.cli.load(rootCmd, env.configPath ? require(env.configPath).commands : null)
+			.spread((cmdName, options) => {
+				const cmdOptions = butil.assignWithValid({}, options, rootCmd.opts())
+				const targetCmd = brickyard.cli.commands[cmdName]
 
-	commander.parse(process.argv)
+				brickyard.load(env.configPath)
 
-	/**
-	 * a callback runner invoke when a subcommand is at action,
-	 * and then invoke the subcommand's run with runtime object
-	 *
-	 * @param options
-	 */
-	function commandRunner(options) {
-		const cmdOptions = butil.assignWithValid({}, options, commander.opts())
-		const command = argv._[0]
+				targetCmd.run(brickyard.hatchRuntime(cmdOptions))
+			})
+			.catch(e => {
+				throw e
+			})
 
-		cli.commands[command].run(brickyard.hatchRuntime(cmdOptions))
-	}
-})
+		rootCmd.parse(process.argv)
+	})
+}
+
+function initRootCmd(pkgInfo) {
+	const cmd = new Command(pkgInfo.name)
+
+	cmd
+		.version(pkgInfo.version, '-v, --version')
+		.alias('by')
+		.arguments('[cmd]')
+		.description(pkgInfo.description)
+		.usage('[cmd] [options]')
+		.option('--config <path>', 'config path')
+		.option('--no-color', 'output without color')
+		.option('--loglevel <level>', 'output log verbosity. Available levels are: trace,debug,info,warn,error,fatal')
+		.option('-V, --verbose', 'output log verbosely. Same as debug level. Prior to loglevel argument', Boolean, false)
+
+	return cmd
+}
