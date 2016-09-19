@@ -18,7 +18,8 @@
 		"no-loop-func": 1,
 		"padded-blocks": 0,
 		"prefer-arrow-callback": 1,
-		"strict": 0
+		"strict": 0,
+		"import/no-extraneous-dependencies": 1
 	},
 	"env": {
 		"node": true,
