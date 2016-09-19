@@ -9,8 +9,6 @@ const butil = require('../lib/util')
 
 const rootCmd = initRootCmd(packageInfo)
 
-rootCmd.parse(process.argv)
-
 boot(rootCmd.opts())
 
 /**
