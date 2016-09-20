@@ -11,21 +11,21 @@ const Command = require('commander').Command
 
 describe('#CLI test', function () {
 
-	it('should load all the commands in the commandStore', function () {
-		const command = new Command('test')
+    it('should load all the commands in the commandStore', function () {
+        const command = new Command('test')
 
-		cli.load(command, null)
+        cli.load(command, null)
 
-		expect(Object.keys(cli.commands)).to.eql(['init'])
-	})
+        expect(Object.keys(cli.commands)).to.eql(['init'])
+    })
 
-	it('should load all the specified commands', function () {
-		const command = new Command('test')
+    it('should load all the specified commands', function () {
+        const command = new Command('test')
 
-		cli.load(command, ['brickyard-command-init'])
+        cli.load(command, ['brickyard-command-init'])
 
-		expect(Object.keys(cli.commands)).to.eql(['init'])
-	})
+        expect(Object.keys(cli.commands)).to.eql(['init'])
+    })
 
 })
 

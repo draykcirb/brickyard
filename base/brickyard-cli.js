@@ -16,58 +16,58 @@ boot(require('minimist')(process.argv.slice(2)))
  * @param {Object} argv
  */
 function boot(argv) {
-	const app = new Liftoff({
-		name: packageInfo.name,
-		processTitle: packageInfo.name,
-		moduleName: packageInfo.name,
-		configName: 'by-conf',
-		extensions: {
-			'.js': null,
-			'.json': null
-		},
-		v8flags: ['--harmony']
-	})
+    const app = new Liftoff({
+        name: packageInfo.name,
+        processTitle: packageInfo.name,
+        moduleName: packageInfo.name,
+        configName: 'by-conf',
+        extensions: {
+            '.js': null,
+            '.json': null
+        },
+        v8flags: ['--harmony']
+    })
 
-	if (argv.backlog) {
-		let logPath = _.isBoolean(argv.backlog) ? 'logs/build.log' : argv.backlog
+    if (argv.backlog) {
+        let logPath = _.isBoolean(argv.backlog) ? 'logs/build.log' : argv.backlog
 
-		logger.configure({
-			appenders: [
-				{ type: 'console' },
-				{ type: 'file', filename: logPath, maxLogSize: 1000000, backups: 10 }
-			],
-			replaceConsole: true
-		})
-	}
+        logger.configure({
+            appenders: [
+                { type: 'console' },
+                { type: 'file', filename: logPath, maxLogSize: 1000000, backups: 10 }
+            ],
+            replaceConsole: true
+        })
+    }
 
-	app.launch({
-		configPath: argv.config
-	}, env => {
-		let brickyard = !env.modulePath ? require('../') : require(env.modulePath)
+    app.launch({
+        configPath: argv.config
+    }, (env) => {
+        let brickyard = !env.modulePath ? require('../') : require(env.modulePath)
 
-		if (argv.verbose) {
-			brickyard.setLogLevel('debug')
-		} else {
-			brickyard.setLogLevel(argv.loglevel)
-		}
+        if (argv.verbose) {
+            brickyard.setLogLevel('debug')
+        } else {
+            brickyard.setLogLevel(argv.loglevel)
+        }
 
-		const rootCmd = initRootCmd(packageInfo)
+        const rootCmd = initRootCmd(packageInfo)
 
-		brickyard.cli.load(rootCmd, env.configPath ? require(env.configPath).commands : null)
-			.spread((cmdName, options) => {
-				const cmdOptions = butil.assignWithValid({}, options, rootCmd.opts())
-				const targetCmd = brickyard.cli.commands[cmdName]
+        brickyard.cli.load(rootCmd, env.configPath ? require(env.configPath).commands : null)
+            .spread((cmdName, options) => {
+                const cmdOptions = butil.assignWithValid({}, options, rootCmd.opts())
+                const targetCmd = brickyard.cli.commands[cmdName]
 
-				brickyard.load(env.configPath, targetCmd.config)
+                brickyard.load(env.configPath, targetCmd.config)
 
-				targetCmd.run(brickyard.hatchRuntime(cmdOptions))
-			})
-			.catch(e => {
-				throw e
-			})
+                targetCmd.run(brickyard.hatchRuntime(cmdOptions))
+            })
+            .catch((e) => {
+                throw e
+            })
 
-		rootCmd.parse(process.argv)
-	})
+        rootCmd.parse(process.argv)
+    })
 }
 
 /**
@@ -76,19 +76,19 @@ function boot(argv) {
  * @returns {*|Command}
  */
 function initRootCmd(pkgInfo) {
-	const cmd = new Command(pkgInfo.name)
+    const cmd = new Command(pkgInfo.name)
 
-	cmd
-		.version(pkgInfo.version, '-v, --version')
-		.alias('by')
-		.arguments('[cmd]')
-		.description(pkgInfo.description)
-		.usage('[cmd] [options]')
-		.option('--config <path>', 'config path')
-		.option('--no-color', 'output without color')
-		.option('--backlog [dir]', 'output without color')
-		.option('--loglevel <level>', 'output log verbosity. Available levels are: trace,debug,info,warn,error,fatal')
-		.option('-V, --verbose', 'output log verbosely. Same as debug level. Prior to loglevel argument', Boolean, false)
+    cmd
+        .version(pkgInfo.version, '-v, --version')
+        .alias('by')
+        .arguments('[cmd]')
+        .description(pkgInfo.description)
+        .usage('[cmd] [options]')
+        .option('--config <path>', 'config path')
+        .option('--no-color', 'output without color')
+        .option('--backlog [dir]', 'output without color')
+        .option('--loglevel <level>', 'output log verbosity. Available levels are: trace,debug,info,warn,error,fatal')
+        .option('-V, --verbose', 'output log verbosely. Same as debug level. Prior to loglevel argument', Boolean, false)
 
-	return cmd
+    return cmd
 }

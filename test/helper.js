@@ -6,12 +6,12 @@
 const logger = require('../lib/logger')
 
 before(function () {
-	logger.configure({
-		appenders: [
-			{ type: 'console' }
-		],
-		levels: {
-			'[all]': 'off'
-		}
-	})
+    logger.configure({
+        appenders: [
+            { type: 'console' }
+        ],
+        levels: {
+            '[all]': 'off'
+        }
+    })
 })

@@ -9,81 +9,81 @@ const loader = require('../lib/programLoader')
 
 describe('#Program loader test', function () {
 
-	describe('test with fake-brickyard', function () {
+    describe('test with fake-brickyard', function () {
 
-		beforeEach('fake the cwd', function () {
-			process.chdir('./test-resources/fake-brickyard')
-		})
+        beforeEach('fake the cwd', function () {
+            process.chdir('./test-resources/fake-brickyard')
+        })
 
-		afterEach('restore the cwd', function () {
-			process.chdir('../../')
-		})
+        afterEach('restore the cwd', function () {
+            process.chdir('../../')
+        })
 
-		it('should load the single `qiji` recipe and load correctly', function () {
+        it('should load the single `qiji` recipe and load correctly', function () {
 
-			const programs = loader.getTargetPrograms(['qiji'], './recipes')
+            const programs = loader.getTargetPrograms(['qiji'], './recipes')
 
-			expect(programs).to.have.all.keys('qiji')
-			expect(programs['qiji']).to.have.property('id', 'qiji')
+            expect(programs).to.have.all.keys('qiji')
+            expect(programs['qiji']).to.have.property('id', 'qiji')
 
-		})
+        })
 
-		it('should load the multiple recipes', function () {
+        it('should load the multiple recipes', function () {
 
-			const programs = loader.getTargetPrograms(['qiji', 'wcg-portal'], './recipes')
+            const programs = loader.getTargetPrograms(['qiji', 'wcg-portal'], './recipes')
 
-			expect(programs).to.have.all.keys('qiji', 'wcg-portal')
-			expect(_.map(programs, 'id')).to.be.eql(['qiji', 'wcg-portal'])
+            expect(programs).to.have.all.keys('qiji', 'wcg-portal')
+            expect(_.map(programs, 'id')).to.be.eql(['qiji', 'wcg-portal'])
 
-		})
+        })
 
-		it('should load all the recipes', function () {
+        it('should load all the recipes', function () {
 
-			const programs = loader.getAllPrograms('./recipes')
+            const programs = loader.getAllPrograms('./recipes')
 
-			expect(programs).to.have.all.keys('admin', 'qiji', 'wcg-portal')
-			expect(_.map(programs, 'id')).to.be.eql(['admin', 'qiji', 'wcg-portal'])
+            expect(programs).to.have.all.keys('admin', 'qiji', 'wcg-portal')
+            expect(_.map(programs, 'id')).to.be.eql(['admin', 'qiji', 'wcg-portal'])
 
-		})
+        })
 
-		it('should load the single `qiji` recipe with a context', function () {
+        it('should load the single `qiji` recipe with a context', function () {
 
-			const programs = loader.getTargetProgramsFromContext(['qiji'], loader.getAllPrograms('./recipes'))
+            const programs = loader.getTargetProgramsFromContext(['qiji'], loader.getAllPrograms('./recipes'))
 
-			expect(programs).to.have.all.keys('qiji')
-			expect(programs['qiji']).to.have.property('id', 'qiji')
+            expect(programs).to.have.all.keys('qiji')
+            expect(programs['qiji']).to.have.property('id', 'qiji')
 
-		})
+        })
 
-		it('should load nothing with non-exist `heaven` recipe', function () {
+        it('should load nothing with non-exist `heaven` recipe', function () {
 
-			const programs = loader.getTargetPrograms(['heaven'], './recipes')
+            const programs = loader.getTargetPrograms(['heaven'], './recipes')
 
-			expect(programs).to.be.empty
+            expect(programs).to.be.empty
 
-		})
-	})
+        })
+    })
 
-	describe('test with fake-brickyard2', function () {
+    describe('test with fake-brickyard2', function () {
 
-		beforeEach('fake the cwd', function () {
-			process.chdir('./test-resources/fake-brickyard2')
-		})
+        beforeEach('fake the cwd', function () {
+            process.chdir('./test-resources/fake-brickyard2')
+        })
 
-		afterEach('restore the cwd', function () {
-			process.chdir('../../')
-		})
+        afterEach('restore the cwd', function () {
+            process.chdir('../../')
+        })
 
-		it('should load nothing but catch an error', function () {
+        it('should load nothing but catch an error', function () {
 
-			const fn = function () {
-				loader.getTargetPrograms(['qiji'], './recipes')
-			}
+            const fn = function () {
+                loader.getTargetPrograms(['qiji'], './recipes')
+            }
 
-			expect(fn).to.throw(Error)
+            expect(fn).to.throw(Error)
 
-		})
-	})
+        })
+    })
 
 })
 

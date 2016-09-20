@@ -8,69 +8,69 @@ const loader = require('../lib/pluginLoader')
 
 describe('#Plugins loader test', function () {
 
-	describe('test with non-empty plugin store', function () {
-		beforeEach('fake the cwd', function () {
-			process.chdir('./test-resources/fake-brickyard')
-		})
+    describe('test with non-empty plugin store', function () {
+        beforeEach('fake the cwd', function () {
+            process.chdir('./test-resources/fake-brickyard')
+        })
 
-		afterEach('restore the cwd', function () {
-			process.chdir('../../')
-		})
+        afterEach('restore the cwd', function () {
+            process.chdir('../../')
+        })
 
-		it('should load the specified plugins with direct plugin declaration', function () {
-			const specifiedPlugins = ['common-service/udp-lbs', 'wcg-portal']
-			const plugins = loader.getTargetPlugins('./plugins', specifiedPlugins)
+        it('should load the specified plugins with direct plugin declaration', function () {
+            const specifiedPlugins = ['common-service/udp-lbs', 'wcg-portal']
+            const plugins = loader.getTargetPlugins('./plugins', specifiedPlugins)
 
-			expect(plugins).to.have.all.keys('udp-lbs', 'wcg-portal')
-		})
+            expect(plugins).to.have.all.keys('udp-lbs', 'wcg-portal')
+        })
 
-		it('should load the specified plugins without direct plugin declaration', function () {
-			const specifiedPlugins = ['admin']
-			const plugins = loader.getTargetPlugins('./plugins', specifiedPlugins)
+        it('should load the specified plugins without direct plugin declaration', function () {
+            const specifiedPlugins = ['admin']
+            const plugins = loader.getTargetPlugins('./plugins', specifiedPlugins)
 
-			expect(plugins).to.have.all.keys(
-				'admin-activation-code',
-				'admin-activation-code-server',
-				'admin-business',
-				'admin-business-server'
-			)
-		})
+            expect(plugins).to.have.all.keys(
+                'admin-activation-code',
+                'admin-activation-code-server',
+                'admin-business',
+                'admin-business-server'
+            )
+        })
 
-		it('should load the specified plugins including a `bower.json`', function () {
-			const specifiedPlugins = ['wcg-portal']
-			const plugins = loader.getTargetPlugins('./plugins', specifiedPlugins)
+        it('should load the specified plugins including a `bower.json`', function () {
+            const specifiedPlugins = ['wcg-portal']
+            const plugins = loader.getTargetPlugins('./plugins', specifiedPlugins)
 
-			expect(plugins['wcg-portal']).to.have.deep.property('bower')
-		})
+            expect(plugins['wcg-portal']).to.have.deep.property('bower')
+        })
 
-		it('should throw an error with no matched plugin name', function () {
-			const specifiedPlugins = ['heaven']
+        it('should throw an error with no matched plugin name', function () {
+            const specifiedPlugins = ['heaven']
 
-			const fn = function () {
-				loader.getTargetPlugins('./plugins', specifiedPlugins)
-			}
+            const fn = function () {
+                loader.getTargetPlugins('./plugins', specifiedPlugins)
+            }
 
-			expect(fn).to.throw(Error)
-		})
-	})
+            expect(fn).to.throw(Error)
+        })
+    })
 
-	describe('test with plugin doesn\'t have `package.json`', function () {
-		beforeEach('fake the cwd', function () {
-			process.chdir('./test-resources/fake-brickyard2')
-		})
+    describe('test with plugin doesn\'t have `package.json`', function () {
+        beforeEach('fake the cwd', function () {
+            process.chdir('./test-resources/fake-brickyard2')
+        })
 
-		afterEach('restore the cwd', function () {
-			process.chdir('../../')
-		})
+        afterEach('restore the cwd', function () {
+            process.chdir('../../')
+        })
 
-		it('should throw an error with no plugin found', function () {
-			const specifiedPlugins = ['wcg-portal']
+        it('should throw an error with no plugin found', function () {
+            const specifiedPlugins = ['wcg-portal']
 
-			const fn = function () {
-				loader.getTargetPlugins('./plugins', specifiedPlugins)
-			}
+            const fn = function () {
+                loader.getTargetPlugins('./plugins', specifiedPlugins)
+            }
 
-			expect(fn).to.throw(Error)
-		})
-	})
+            expect(fn).to.throw(Error)
+        })
+    })
 })
