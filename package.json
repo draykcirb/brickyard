@@ -41,7 +41,7 @@
     "test-cov": "istanbul cover mocha -- -i -f 'staller' --reporter dot --check-leaks test",
     "prerelease": "npm run lint",
     "release": "standard-version",
-    "push": "git push && git push --tags && npm publish . --registry=https://registry.npmjs.org/"
+    "push": "git push --follow-tags && npm publish . --registry=https://registry.npmjs.org/"
   },
   "config": {
     "validate-commit-msg": {
@@ -65,9 +65,9 @@
     },
     "ghooks": {
       "//": {
-        "pre-commit": "check code style",
         "post-checkout": "npm install"
       },
+      "pre-commit": "npm run lint",
       "commit-msg": "validate-commit-msg",
       "post-rewrite": "npm install",
       "post-merge": "npm install"
