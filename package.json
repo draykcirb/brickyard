@@ -21,7 +21,8 @@
     "globby": "^6.0.0",
     "liftoff": "^2.2.0",
     "lodash": "^4.15.0",
-    "log4js": "^0.6.33"
+    "log4js": "^0.6.33",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "brickyard-command-init": "*",
