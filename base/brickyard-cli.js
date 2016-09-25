@@ -29,15 +29,7 @@ function boot(argv) {
     })
 
     if (argv.backlog) {
-        let logPath = _.isBoolean(argv.backlog) ? 'logs/build.log' : argv.backlog
-
-        logger.configure({
-            appenders: [
-                { type: 'console' },
-                { type: 'file', filename: logPath, maxLogSize: 1000000, backups: 10 }
-            ],
-            replaceConsole: true
-        })
+        logger.backlogFile(argv.backlog)
     }
 
     app.launch({
@@ -86,7 +78,7 @@ function initRootCmd(pkgInfo) {
         .usage('[cmd] [options]')
         .option('--config <path>', 'config path')
         .option('--no-color', 'output without color')
-        .option('--backlog [dir]', 'output without color')
+        .option('--backlog [dir]', 'output without color. If not dir specified, will use default dir name.')
         .option('--loglevel <level>', 'output log verbosity. Available levels are: trace,debug,info,warn,error,fatal')
         .option('-V, --verbose', 'output log verbosely. Same as debug level. Prior to loglevel argument', Boolean, false)
 
