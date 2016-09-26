@@ -25,7 +25,6 @@
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "brickyard-command-init": "*",
     "chai": "^3.5.0",
     "eslint": "^3.5.0",
     "eslint-config-airbnb-base": "^7.0.0",
@@ -73,5 +72,8 @@
       "post-rewrite": "npm install",
       "post-merge": "npm install"
     }
+  },
+  "engines": {
+    "node": ">=6.0"
   }
 }

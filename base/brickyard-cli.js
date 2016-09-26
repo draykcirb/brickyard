@@ -5,9 +5,6 @@
 const Liftoff = require('liftoff')
 const Command = require('commander').Command
 const packageInfo = require('../package.json')
-const butil = require('../lib/util')
-const logger = require('../lib/logger')
-const _ = require('lodash')
 
 boot(require('minimist')(process.argv.slice(2)))
 
@@ -28,14 +25,14 @@ function boot(argv) {
         v8flags: ['--harmony']
     })
 
-    if (argv.backlog) {
-        logger.backlogFile(argv.backlog)
-    }
-
     app.launch({
         configPath: argv.config
     }, (env) => {
         let brickyard = !env.modulePath ? require('../') : require(env.modulePath)
+
+        if (argv.backlog) {
+            brickyard.logger.backlogFile(argv.backlog)
+        }
 
         if (argv.verbose) {
             brickyard.setLogLevel('debug')
@@ -45,18 +42,7 @@ function boot(argv) {
 
         const rootCmd = initRootCmd(packageInfo)
 
-        brickyard.cli.load(rootCmd, env.configPath ? require(env.configPath).commands : null)
-            .spread((cmdName, options) => {
-                const cmdOptions = butil.assignWithValid({}, options, rootCmd.opts())
-                const targetCmd = brickyard.cli.commands[cmdName]
-
-                brickyard.load(env.configPath, targetCmd.config)
-
-                targetCmd.run(brickyard.hatchRuntime(cmdOptions))
-            })
-            .catch((e) => {
-                throw e
-            })
+        brickyard.cli.load(rootCmd, env)
 
         rootCmd.parse(process.argv)
     })
