@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/draykcirb/brickyard3/compare/v2.1.0...v2.2.0) (2016-09-26)
+
+
+### Features
+
+* multi improvement ([3456172](https://github.com/draykcirb/brickyard3/commit/3456172))
+* remove sealing for module exports ([4efaab8](https://github.com/draykcirb/brickyard3/commit/4efaab8))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/draykcirb/brickyard3/compare/v2.0.0...v2.1.0) (2016-09-21)
 
