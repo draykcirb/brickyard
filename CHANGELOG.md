@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.1"></a>
+## [2.2.1](https://github.com/draykcirb/brickyard3/compare/v2.2.0...v2.2.1) (2016-09-26)
+
+
+### Bug Fixes
+
+* empty property override when merge object ([a8204d4](https://github.com/draykcirb/brickyard3/commit/a8204d4))
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/draykcirb/brickyard3/compare/v2.1.0...v2.2.0) (2016-09-26)
 
