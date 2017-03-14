@@ -41,37 +41,11 @@
     "test-cov": "istanbul cover mocha -- -i -f 'staller' --reporter dot --check-leaks test",
     "prerelease": "npm run lint",
     "release": "standard-version",
-    "push": "git push --follow-tags && npm publish . --registry=https://registry.npmjs.org/"
-  },
-  "config": {
-    "validate-commit-msg": {
-      "types": [
-        "feat",
-        "fix",
-        "docs",
-        "style",
-        "refactor",
-        "example",
-        "perf",
-        "test",
-        "chore",
-        "revert"
-      ],
-      "warnOnFail": false,
-      "maxSubjectLength": 72,
-      "subjectPattern": ".+",
-      "subjectPatternErrorMsg": "subject does not match subject pattern!",
-      "helpMessage": "\n# allowed type: feat, fix, docs, style, refactor, example, perf, test, chore, revert\n# subject no more than 50 chars\n# a body line no more than 72 chars"
-    },
-    "ghooks": {
-      "//": {
-        "post-checkout": "npm install"
-      },
-      "pre-commit": "npm run lint",
-      "commit-msg": "validate-commit-msg",
-      "post-rewrite": "npm install",
-      "post-merge": "npm install"
-    }
+    "push": "git push --follow-tags && npm publish . --registry=https://registry.npmjs.org/",
+    "precommit": "npm run lint",
+    "commitmsg": "validate-commit-msg",
+    "postrewrite": "npm install",
+    "postmerge": "npm install"
   },
   "engines": {
     "node": ">=6.0"
